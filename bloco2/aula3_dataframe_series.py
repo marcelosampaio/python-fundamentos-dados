@@ -1,12 +1,18 @@
 from dados import obter_dados_exemplo
 
+df = obter_dados_exemplo()
 
-def main():
-    df = obter_dados_exemplo()
-    print("DataFrame:\n", df)
-    print("\nColuna 'idade' como Series:\n", df['idade'])
-    print("\nDescrição estatística:\n", df.describe())
+print("=== DataFrame completo ===")
+print(df)
 
+print("\n=== Coluna: produto ===")
+print(df["produto"])
 
-if __name__ == '__main__':
-    main()
+print("\n=== Coluna: categoria ===")
+print(df["categoria"])
+
+print("\n=== Coluna: quantidade ===")
+print(df["quantidade"])
+
+print("\n=== Coluna: valor_unitario ===")
+print(df["valor_unitario"])

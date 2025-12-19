@@ -1,38 +1,47 @@
-# O que este commit resolve
 
-Resumo: este commit adiciona uma configuração de workspace do VSCode que executa `git add "${file}"` automaticamente ao salvar arquivos Python, para que alterações apareçam no staging como esperado.
+# Descrição do que este commit adiciona
 
-- Arquivo adicionado: [.vscode/settings.json](.vscode/settings.json)
+Resumo: este commit adicionou um arquivo de configuração de workspace do VSCode e um README explicativo.
 
-Motivação:
-- Facilitar o fluxo onde, ao salvar um arquivo no VSCode, ele vai automaticamente para o staging do Git.
-- Evitar que edições fiquem esquecidas sem serem adicionadas ao índice.
+Arquivos alterados/adicione:
+- `.vscode/settings.json` — contém uma configuração que, se seu editor estiver configurado para executar comandos ao salvar (por exemplo, usando uma extensão que rode comandos on-save), executa `git add "${file}"` ao salvar arquivos `.py`.
+- `README.md` — este arquivo, que documenta o que foi feito e como testar.
 
-Como funciona:
-- A configuração usa a extensão **Run On Save** (publisher: `emeraldwalk`) para executar o comando `git add` no arquivo salvo.
+Observação importante sobre o editor:
+- O repositório contém um exemplo de configuração que utiliza a chave `emeraldwalk.runonsave` no arquivo de settings. Se você não utiliza essa extensão ou outra que rode comandos ao salvar, essa configuração não terá efeito. Mantenha ou remova o arquivo `.vscode/settings.json` conforme sua preferência.
 
-Passos para usar/testar:
-1. Instale a extensão no VSCode:
+# O que o projeto faz até agora
+
+Este repositório é um conjunto de exercícios de fundamentos de Python focados em manipulação de dados com `pandas`.
+
+Conteúdo atual relevante:
+- `requirements.txt` — lista a dependência `pandas`.
+- `bloco2/dados.py` — função `obter_dados_exemplo()` que retorna um `DataFrame` de exemplo com registros de vendas (produto, categoria, quantidade, valor_unitario).
+- `bloco2/aula3_dataframe_series.py` — script que importa `obter_dados_exemplo()`, imprime o `DataFrame` completo e mostra impressão separada de algumas colunas (`produto`, `categoria`, `quantidade`, `valor_unitario`).
+
+Como rodar o exemplo localmente:
 
 ```bash
-code --install-extension emeraldwalk.runonsave
+python3 -m pip install -r requirements.txt
+python3 bloco2/aula3_dataframe_series.py
 ```
 
-2. Recarregue o VSCode (Command Palette → Reload Window) ou reinicie.
-3. Abra um arquivo `.py`, altere e salve. O comando `git add <arquivo>` será executado automaticamente.
-4. Verifique com:
+# Como testar a automação de staging (opcional)
+
+Se quiser que arquivos sejam automaticamente adicionados ao staging ao salvar, configure seu editor para executar o comando abaixo ao salvar (ou use uma extensão equivalente):
+
+```bash
+git add "${file}"
+```
+
+Depois de salvar um arquivo modificado, verifique o staging com:
 
 ```bash
 git status --porcelain
 ```
 
-Notas importantes:
-- Arquivos listados em `.gitignore` não serão adicionados a menos que você force (`git add -f`). Ex.: arquivos em `__pycache__/` e `*.pyc` normalmente são ignorados.
-- Se um arquivo foi marcado como `assume-unchanged` ou `skip-worktree`, use `git update-index --no-assume-unchanged <arquivo>` ou `git update-index --no-skip-worktree <arquivo>` para que mudanças voltem a ser detectadas.
-- Use esta automação com cuidado em arquivos sensíveis — o comando é executado localmente no seu workspace.
+Notas adicionais:
+- Arquivos listados em `.gitignore` (ex.: `__pycache__/`, `*.pyc`) não serão adicionados automaticamente, a menos que você force com `git add -f`.
+- Se um arquivo estiver marcado com `assume-unchanged` ou `skip-worktree`, atualize o índice com `git update-index --no-assume-unchanged <arquivo>` ou `git update-index --no-skip-worktree <arquivo>` para voltar a rastrear alterações.
 
-Como reverter / remover:
-- Remova ou edite [.vscode/settings.json](.vscode/settings.json) ou desative a extensão `emeraldwalk.runonsave`.
-
-Próximo passo recomendado:
-- Testar salvando um arquivo Python e confirmar que ele aparece em staging. Se preferir, posso executar esse teste localmente no repositório para você.
+Se quiser, adapto a configuração em `.vscode/settings.json` para o comportamento exato do seu editor (me diga qual extensão ou mecanismo você usa para executar comandos ao salvar). 

@@ -31,17 +31,26 @@ python3 bloco2/aula3_dataframe_series.py
 Se quiser que arquivos sejam automaticamente adicionados ao staging ao salvar, configure seu editor para executar o comando abaixo ao salvar (ou use uma extensão equivalente):
 
 ```bash
-git add "${file}"
-```
+# python-fundamentos-dados
 
-Depois de salvar um arquivo modificado, verifique o staging com:
+Repositório com exercícios básicos de Python e pandas.
+
+Conteúdo principal:
+- `requirements.txt` — `pandas`.
+- `bloco2/dados.py` — `obter_dados_exemplo()` retorna um `DataFrame` de vendas (produto, categoria, quantidade, valor_unitario).
+- `bloco2/aula3_dataframe_series.py` — imprime o `DataFrame` e colunas individuais.
+- `bloco2/aula4_operacoes_colunas.py` — imprime métricas agregadas (soma, média, contagem, mínimo, máximo).
+
+Execução rápida:
 
 ```bash
-git status --porcelain
+python3 -m pip install -r requirements.txt
+python3 bloco2/aula3_dataframe_series.py
+python3 bloco2/aula4_operacoes_colunas.py
 ```
 
-Notas adicionais:
-- Arquivos listados em `.gitignore` (ex.: `__pycache__/`, `*.pyc`) não serão adicionados automaticamente, a menos que você force com `git add -f`.
-- Se um arquivo estiver marcado com `assume-unchanged` ou `skip-worktree`, atualize o índice com `git update-index --no-assume-unchanged <arquivo>` ou `git update-index --no-skip-worktree <arquivo>` para voltar a rastrear alterações.
+Notas:
+- O arquivo `.vscode/settings.json` foi removido do repositório (era apenas um exemplo para executar `git add` ao salvar).
+- Arquivos em `__pycache__/`, `*.py[cod]`, e diretórios de ambientes virtuais estão listados em `.gitignore` e não são versionados por padrão.
 
-Se quiser, adapto a configuração em `.vscode/settings.json` para o comportamento exato do seu editor (me diga qual extensão ou mecanismo você usa para executar comandos ao salvar). 
+Se quiser que eu adicione uma configuração específica de editor para auto-staging, diga qual editor/extensão você usa e eu preparo o exemplo.

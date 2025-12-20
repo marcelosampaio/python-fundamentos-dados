@@ -11,6 +11,3 @@ def obter_dados_exemplo():
 
     return pd.DataFrame(vendas)
 
-
-if __name__ == "__main__":
-    print(obter_dados_exemplo())

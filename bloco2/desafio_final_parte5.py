@@ -1,4 +1,3 @@
-import pandas as pd
 from dados import obter_dados_exemplo
 
 df = obter_dados_exemplo()
